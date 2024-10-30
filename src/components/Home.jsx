@@ -5,6 +5,11 @@ import About from './About'
 import Projects from './projects/Projects'
 
 const Home = () => {
+  const [isToggled, setIsToggled] = React.useState(false);
+  
+  const handleToggled = () => {
+    setIsToggled(!isToggled);
+  };
 
   function scrollToElement(id) {
     const element = document.getElementById(id);
@@ -16,8 +21,8 @@ const Home = () => {
   }
 
   return (
-    <div className='dark' id='home'>
-        <Header scrollToElement={scrollToElement}/>
+    <div className={`${isToggled ? 'dark' : ''}`} id='home'>
+        <Header scrollToElement={scrollToElement} handleToggled={handleToggled} isToggled={isToggled}/>
         <Banner/>
         <Projects/>
         <About/>
